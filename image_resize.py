@@ -1,4 +1,7 @@
 import argparse
+import sys
+
+from PIL import Image
 
 
 def resize_image(path_to_original, path_to_result):
@@ -49,6 +52,15 @@ def parse_command_line_arguments():
 
 def main():
     command_line_arguments = parse_command_line_arguments()
+
+    filename = command_line_arguments.filename
+
+    try:
+        source_image = Image.open(filename)
+    except FileNotFoundError:
+        sys.exit('File not found')
+    except OSError:
+        sys.exit('This file is not a image')
 
 
 if __name__ == '__main__':

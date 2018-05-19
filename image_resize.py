@@ -54,6 +54,9 @@ def main():
     command_line_arguments = parse_command_line_arguments()
 
     filename = command_line_arguments.filename
+    width = command_line_arguments.width
+    height = command_line_arguments.height
+    scale = command_line_arguments.scale
 
     try:
         source_image = Image.open(filename)
@@ -61,6 +64,9 @@ def main():
         sys.exit('File not found')
     except OSError:
         sys.exit('This file is not a image')
+
+    if not any((width, height, scale)):
+        sys.exit('Parameters for resizing are not given')
 
 
 if __name__ == '__main__':

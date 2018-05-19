@@ -68,6 +68,9 @@ def main():
     if not any((width, height, scale)):
         sys.exit('Parameters for resizing are not given')
 
+    if scale and (width or height):
+        sys.exit('You should given either scale or size (width and/or height')
+
 
 if __name__ == '__main__':
     main()

@@ -4,10 +4,6 @@ import sys
 from PIL import Image
 
 
-def resize_image(path_to_original, path_to_result):
-    pass
-
-
 def calculate_output_image_size(source_image_size, given_size, scale):
     source_image_width, source_image_height = source_image_size
 
@@ -39,6 +35,22 @@ def calculate_output_image_size(source_image_size, given_size, scale):
         output_image_size = (0, 0)
 
     return output_image_size
+
+
+def check_saving_images_proportions(
+        source_image_size,
+        output_image_size,
+        permissible_error=0.01):
+    source_image_width, source_image_height = source_image_size
+
+    output_image_width, output_image_height = output_image_size
+
+    source_image_proportions = source_image_width / source_image_height
+
+    output_image_proportions = output_image_width / output_image_height
+
+    return abs(source_image_proportions - output_image_proportions
+               ) < permissible_error
 
 
 def parse_command_line_arguments():
@@ -109,6 +121,11 @@ def main():
         given_size=(width, height),
         scale=scale,
     )
+
+    if not check_saving_images_proportions(
+            source_image_size=source_image.size,
+            output_image_size=output_image_size):
+        print('Warning: proportions of source image will not be saved')
 
 
 if __name__ == '__main__':

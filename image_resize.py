@@ -8,6 +8,39 @@ def resize_image(path_to_original, path_to_result):
     pass
 
 
+def calculate_output_image_size(source_image_size, given_size, scale):
+    source_image_width, source_image_height = source_image_size
+
+    given_width, given_height = given_size
+
+    if scale:
+        output_image_size = (
+            round(source_image_width * scale),
+            round(source_image_height * scale),
+        )
+        return output_image_size
+
+    if given_width and given_height:
+        output_image_size = (
+            given_width,
+            given_height,
+        )
+    elif given_width:
+        output_image_size = (
+            given_width,
+            round((source_image_height * given_width) / source_image_width),
+        )
+    elif given_height:
+        output_image_size = (
+            round((given_height * source_image_width) / source_image_height),
+            given_height,
+        )
+    else:
+        output_image_size = (0, 0)
+
+    return output_image_size
+
+
 def parse_command_line_arguments():
     parser = argparse.ArgumentParser()
 
@@ -70,6 +103,12 @@ def main():
 
     if scale and (width or height):
         sys.exit('You should given either scale or size (width and/or height')
+
+    output_image_size = calculate_output_image_size(
+        source_image_size=source_image.size,
+        given_size=(width, height),
+        scale=scale,
+    )
 
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 import argparse
 import sys
+import os.path
 
 from PIL import Image
 
@@ -102,6 +103,7 @@ def main():
     width = command_line_arguments.width
     height = command_line_arguments.height
     scale = command_line_arguments.scale
+    output_path = command_line_arguments.output
 
     try:
         source_image = Image.open(filename)
@@ -126,6 +128,9 @@ def main():
             source_image_size=source_image.size,
             output_image_size=output_image_size):
         print('Warning: proportions of source image will not be saved')
+
+    if output_path and not os.path.isdir(output_path):
+        sys.exit('Output path is not a directory or not exists')
 
 
 if __name__ == '__main__':

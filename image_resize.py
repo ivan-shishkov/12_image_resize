@@ -96,6 +96,17 @@ def parse_command_line_arguments():
     return command_line_arguments
 
 
+def check_correct_optional_arguments(width, height, scale, output_path):
+    if not any((width, height, scale)):
+        return 'Parameters for resizing are not given'
+
+    if scale and (width or height):
+        return 'You should given either scale or size (width and/or height)'
+
+    if output_path and not os.path.isdir(output_path):
+        return 'Output path is not a directory or not exists'
+
+
 def main():
     command_line_arguments = parse_command_line_arguments()
 
@@ -105,18 +116,19 @@ def main():
     scale = command_line_arguments.scale
     output_path = command_line_arguments.output
 
+    error_message = check_correct_optional_arguments(
+        width, height, scale, output_path,
+    )
+
+    if error_message:
+        sys.exit(error_message)
+
     try:
         source_image = Image.open(filename)
     except FileNotFoundError:
         sys.exit('File not found')
     except OSError:
         sys.exit('This file is not a image')
-
-    if not any((width, height, scale)):
-        sys.exit('Parameters for resizing are not given')
-
-    if scale and (width or height):
-        sys.exit('You should given either scale or size (width and/or height')
 
     output_image_size = calculate_output_image_size(
         source_image_size=source_image.size,
@@ -128,9 +140,6 @@ def main():
             source_image_size=source_image.size,
             output_image_size=output_image_size):
         print('Warning: proportions of source image will not be saved')
-
-    if output_path and not os.path.isdir(output_path):
-        sys.exit('Output path is not a directory or not exists')
 
 
 if __name__ == '__main__':

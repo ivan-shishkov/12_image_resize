@@ -1,6 +1,7 @@
 import argparse
 import sys
 import os.path
+from pathlib import Path
 
 from PIL import Image
 
@@ -105,6 +106,15 @@ def check_correct_optional_arguments(width, height, scale, output_path):
 
     if output_path and not os.path.isdir(output_path):
         return 'Output path is not a directory or not exists'
+
+
+def create_output_image_filename(source_image_filepath, output_image_size):
+    output_image_width, output_image_height = output_image_size
+
+    base_filename, extension = Path(source_image_filepath).name.split('.')
+
+    return '{}__{}x{}.{}'.format(
+        base_filename, output_image_width, output_image_height, extension)
 
 
 def main():

@@ -120,21 +120,21 @@ def create_output_image_filename(source_image_filepath, output_image_size):
 def main():
     command_line_arguments = parse_command_line_arguments()
 
-    filename = command_line_arguments.filepath
+    source_image_filepath = command_line_arguments.filepath
     width = command_line_arguments.width
     height = command_line_arguments.height
     scale = command_line_arguments.scale
-    output_path = command_line_arguments.output
+    output_directory = command_line_arguments.output
 
     error_message = check_correct_optional_arguments(
-        width, height, scale, output_path,
+        width, height, scale, output_directory,
     )
 
     if error_message:
         sys.exit(error_message)
 
     try:
-        source_image = Image.open(filename)
+        source_image = Image.open(source_image_filepath)
     except FileNotFoundError:
         sys.exit('File not found')
     except OSError:

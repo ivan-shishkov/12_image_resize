@@ -60,7 +60,7 @@ def parse_command_line_arguments():
 
     parser.add_argument(
         'filepath',
-        help='a image file for resizing (should be either JPEG or PNG)',
+        help='a path to the source image file',
         type=str,
     )
 

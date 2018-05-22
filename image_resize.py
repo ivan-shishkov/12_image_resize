@@ -59,7 +59,7 @@ def parse_command_line_arguments():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        'filename',
+        'filepath',
         help='a image file for resizing (should be either JPEG or PNG)',
         type=str,
     )
@@ -120,7 +120,7 @@ def create_output_image_filename(source_image_filepath, output_image_size):
 def main():
     command_line_arguments = parse_command_line_arguments()
 
-    filename = command_line_arguments.filename
+    filename = command_line_arguments.filepath
     width = command_line_arguments.width
     height = command_line_arguments.height
     scale = command_line_arguments.scale

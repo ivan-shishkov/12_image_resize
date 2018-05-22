@@ -117,6 +117,24 @@ def create_output_image_filename(source_image_filepath, output_image_size):
         base_filename, output_image_width, output_image_height, extension)
 
 
+def create_output_image_filepath(
+        source_image_filepath, output_directory, output_image_filename):
+    source_image_directory = Path(source_image_filepath).parent
+
+    if output_directory:
+        output_image_filepath = os.path.join(
+            output_directory,
+            output_image_filename,
+        )
+    else:
+        output_image_filepath = os.path.join(
+            str(source_image_directory),
+            output_image_filename,
+        )
+
+    return output_image_filepath
+
+
 def main():
     command_line_arguments = parse_command_line_arguments()
 

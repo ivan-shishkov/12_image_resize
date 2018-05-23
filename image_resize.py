@@ -180,6 +180,11 @@ def main():
         output_image_filename,
     )
 
+    try:
+        output_image.save(output_image_filepath, format=source_image.format)
+    except PermissionError:
+        sys.exit('Permission denied to save image')
+
 
 if __name__ == '__main__':
     main()

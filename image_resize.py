@@ -167,6 +167,8 @@ def main():
             output_image_size=output_image_size):
         print('Warning: proportions of source image will not be saved')
 
+    output_image = source_image.resize(output_image_size)
+
 
 if __name__ == '__main__':
     main()

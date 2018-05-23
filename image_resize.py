@@ -169,6 +169,11 @@ def main():
 
     output_image = source_image.resize(output_image_size)
 
+    output_image_filename = create_output_image_filename(
+        source_image_filepath,
+        output_image_size,
+    )
+
 
 if __name__ == '__main__':
     main()

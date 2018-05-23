@@ -40,9 +40,7 @@ def calculate_output_image_size(source_image_size, given_size, scale):
 
 
 def check_saving_images_proportions(
-        source_image_size,
-        output_image_size,
-        permissible_error=0.01):
+        source_image_size, output_image_size, permissible_error=0.01):
     source_image_width, source_image_height = source_image_size
 
     output_image_width, output_image_height = output_image_size

@@ -85,7 +85,7 @@ def parse_command_line_arguments():
 
     parser.add_argument(
         '--output',
-        help='a path for saving of output image file',
+        help='a directory for saving of output image file',
         default='',
         type=str,
     )

@@ -185,6 +185,10 @@ def main():
     except PermissionError:
         sys.exit('Permission denied to save image')
 
+    print('Resized image successfully saved to {}'.format(
+        output_image_filepath,
+    ))
+
 
 if __name__ == '__main__':
     main()

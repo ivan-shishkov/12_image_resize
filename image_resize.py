@@ -174,6 +174,12 @@ def main():
         output_image_size,
     )
 
+    output_image_filepath = create_output_image_filepath(
+        source_image_filepath,
+        output_directory,
+        output_image_filename,
+    )
+
 
 if __name__ == '__main__':
     main()

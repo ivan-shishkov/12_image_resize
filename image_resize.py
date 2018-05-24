@@ -38,7 +38,7 @@ def calculate_output_image_size(source_image_size, given_size, scale):
     return output_image_size
 
 
-def check_saving_images_proportions(
+def is_same_images_proportions(
         source_image_size, output_image_size, permissible_error=0.01):
     source_image_width, source_image_height = source_image_size
     output_image_width, output_image_height = output_image_size
@@ -167,7 +167,7 @@ def main():
         scale=scale,
     )
 
-    if not check_saving_images_proportions(
+    if not is_same_images_proportions(
             source_image_size=source_image.size,
             output_image_size=output_image_size):
         print('Warning: proportions of source image will not be saved')

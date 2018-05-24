@@ -1,6 +1,6 @@
 # Image Resizer
 
-[TODO. There will be project description]
+This script allows to resize the image files.
 
 # Project Goals
 

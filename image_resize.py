@@ -141,6 +141,14 @@ def load_source_image(source_image_filepath):
     return source_image
 
 
+def save_image_to_file(output_image, output_image_filepath, image_format):
+    try:
+        output_image.save(output_image_filepath, format=image_format)
+    except PermissionError:
+        return False
+    return True
+
+
 def main():
     command_line_arguments = parse_command_line_arguments()
 
@@ -186,10 +194,9 @@ def main():
         output_image_filename=output_image_filename,
     )
 
-    try:
-        output_image.save(output_image_filepath, format=source_image.format)
-    except PermissionError:
-        sys.exit('Permission denied to save image')
+    if not save_image_to_file(
+            output_image, output_image_filepath, source_image.format):
+        sys.exit('Could not save image to given directory. Permission denied.')
 
     print('Resized image successfully saved to {}'.format(
         output_image_filepath,

@@ -8,7 +8,6 @@ from PIL import Image
 
 def calculate_output_image_size(source_image_size, given_size, scale):
     source_image_width, source_image_height = source_image_size
-
     given_width, given_height = given_size
 
     if scale:
@@ -42,11 +41,9 @@ def calculate_output_image_size(source_image_size, given_size, scale):
 def check_saving_images_proportions(
         source_image_size, output_image_size, permissible_error=0.01):
     source_image_width, source_image_height = source_image_size
-
     output_image_width, output_image_height = output_image_size
 
     source_image_proportions = source_image_width / source_image_height
-
     output_image_proportions = output_image_width / output_image_height
 
     return abs(source_image_proportions - output_image_proportions
@@ -61,35 +58,30 @@ def parse_command_line_arguments():
         help='a path to the source image file',
         type=str,
     )
-
     parser.add_argument(
         '--width',
         help='a width of output image file (in pixels)',
         default=0,
         type=int,
     )
-
     parser.add_argument(
         '--height',
         help='a height of output image file (in pixels)',
         default=0,
         type=int,
     )
-
     parser.add_argument(
         '--scale',
         help='a scaling coefficient of output image file (should be > 0)',
         default=0.0,
         type=float,
     )
-
     parser.add_argument(
         '--output',
         help='a directory for saving of output image file',
         default='',
         type=str,
     )
-
     command_line_arguments = parser.parse_args()
 
     return command_line_arguments
@@ -129,7 +121,6 @@ def create_output_image_filepath(
             str(source_image_directory),
             output_image_filename,
         )
-
     return output_image_filepath
 
 

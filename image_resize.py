@@ -133,6 +133,14 @@ def create_output_image_filepath(
     return output_image_filepath
 
 
+def load_source_image(source_image_filepath):
+    try:
+        source_image = Image.open(source_image_filepath)
+    except (FileNotFoundError, OSError):
+        source_image = None
+    return source_image
+
+
 def main():
     command_line_arguments = parse_command_line_arguments()
 
@@ -149,12 +157,10 @@ def main():
     if error_message:
         sys.exit(error_message)
 
-    try:
-        source_image = Image.open(source_image_filepath)
-    except FileNotFoundError:
-        sys.exit('File not found')
-    except OSError:
-        sys.exit('This file is not a image')
+    source_image = load_source_image(source_image_filepath)
+
+    if not source_image:
+        sys.exit('Source file not found or is not a image file')
 
     output_image_size = calculate_output_image_size(
         source_image_size=source_image.size,

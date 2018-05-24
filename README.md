@@ -39,6 +39,31 @@ optional arguments:
 * If given only either **width** or **height** then resizing of image executes with saving of image proportions
 * If **output** directory are not given the saving of resized image executes to the directory with source image file
 
+Examples of script launch on Linux (suppose we have the **some_picture.jpg** source image file with size of **800x600**):
+
+```bash
+
+$ python3 image_resize.py some_picture.jpg --width 700 --height 700
+Warning: proportions of source image will not be saved
+Resized image successfully saved to some_picture__700x700.jpg
+
+$ python3 image_resize.py some_picture.jpg --width 600 --height 450
+Resized image successfully saved to some_picture__600x450.jpg
+
+$ python3 image_resize.py some_picture.jpg --width 500
+Resized image successfully saved to some_picture__500x375.jpg
+
+$ python3 image_resize.py some_picture.jpg --height 225
+Resized image successfully saved to some_picture__300x225.jpg
+
+$ python3 image_resize.py some_picture.jpg --scale 0.5
+Resized image successfully saved to some_picture__400x300.jpg
+
+$ python3 image_resize.py some_picture.jpg --scale 0.25 --output /home/user
+Resized image successfully saved to /home/user/some_picture__200x150.jpg
+
+```
+
 # Project Goals
 
 The code is written for educational purposes. Training course for web-developers - [DEVMAN.org](https://devman.org)

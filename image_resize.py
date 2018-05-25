@@ -87,15 +87,20 @@ def parse_command_line_arguments():
     return command_line_arguments, parser
 
 
-def check_correct_optional_arguments(width, height, scale, output_path):
+def check_correct_optional_arguments(
+        parser, width, height, scale, output_path):
     if not any((width, height, scale)):
-        return 'Parameters for resizing are not given'
-
+        parser.error(
+            'Parameters for resizing are not given',
+        )
     if scale and (width or height):
-        return 'You should given either scale or size (width and/or height)'
-
+        parser.error(
+            'You should given either scale or size (width and/or height)',
+        )
     if output_path and not os.path.isdir(output_path):
-        return 'Output path is not a directory or not exists'
+        parser.error(
+            'Output path is not a directory or not exists',
+        )
 
 
 def create_output_image_filename(source_image_filepath, output_image_size):
@@ -149,12 +154,9 @@ def main():
     scale = command_line_arguments.scale
     output_directory = command_line_arguments.output
 
-    error_message = check_correct_optional_arguments(
-        width, height, scale, output_directory,
+    check_correct_optional_arguments(
+        parser, width, height, scale, output_directory,
     )
-
-    if error_message:
-        sys.exit(error_message)
 
     source_image = load_source_image(source_image_filepath)
 

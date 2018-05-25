@@ -132,9 +132,9 @@ def create_output_image_filepath(
 def load_source_image(source_image_filepath):
     try:
         source_image = Image.open(source_image_filepath)
+        return source_image
     except (FileNotFoundError, OSError):
         source_image = None
-    return source_image
 
 
 def save_image_to_file(output_image, output_image_filepath, image_format):

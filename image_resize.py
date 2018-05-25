@@ -135,9 +135,9 @@ def load_source_image(source_image_filepath):
 def save_image_to_file(output_image, output_image_filepath, image_format):
     try:
         output_image.save(output_image_filepath, format=image_format)
+        return True
     except PermissionError:
         return False
-    return True
 
 
 def main():

@@ -133,7 +133,7 @@ def load_source_image(source_image_filepath):
     try:
         source_image = Image.open(source_image_filepath)
         return source_image
-    except (FileNotFoundError, OSError):
+    except OSError:
         source_image = None
 
 

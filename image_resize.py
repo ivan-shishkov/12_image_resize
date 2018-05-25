@@ -10,6 +10,8 @@ def calculate_output_image_size(source_image_size, given_size, scale):
     source_image_width, source_image_height = source_image_size
     given_width, given_height = given_size
 
+    output_image_size = None
+
     if scale:
         output_image_size = (
             round(source_image_width * scale),
@@ -32,8 +34,6 @@ def calculate_output_image_size(source_image_size, given_size, scale):
             round((given_height * source_image_width) / source_image_height),
             given_height,
         )
-    else:
-        output_image_size = (0, 0)
 
     return output_image_size
 

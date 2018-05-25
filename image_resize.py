@@ -84,7 +84,7 @@ def parse_command_line_arguments():
     )
     command_line_arguments = parser.parse_args()
 
-    return command_line_arguments
+    return command_line_arguments, parser
 
 
 def check_correct_optional_arguments(width, height, scale, output_path):
@@ -141,7 +141,7 @@ def save_image_to_file(output_image, output_image_filepath, image_format):
 
 
 def main():
-    command_line_arguments = parse_command_line_arguments()
+    command_line_arguments, parser = parse_command_line_arguments()
 
     source_image_filepath = command_line_arguments.filepath
     width = command_line_arguments.width

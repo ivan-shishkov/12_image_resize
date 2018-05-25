@@ -50,7 +50,7 @@ def is_same_images_proportions(
                ) < permissible_error
 
 
-def parse_command_line_arguments():
+def get_command_line_arguments_parser():
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
@@ -82,9 +82,8 @@ def parse_command_line_arguments():
         default='',
         type=str,
     )
-    command_line_arguments = parser.parse_args()
 
-    return command_line_arguments, parser
+    return parser
 
 
 def check_correct_optional_arguments(
@@ -141,7 +140,9 @@ def save_image_to_file(output_image, output_image_filepath, image_format):
 
 
 def main():
-    command_line_arguments, parser = parse_command_line_arguments()
+    parser = get_command_line_arguments_parser()
+
+    command_line_arguments = parser.parse_args()
 
     source_image_filepath = command_line_arguments.filepath
     width = command_line_arguments.width

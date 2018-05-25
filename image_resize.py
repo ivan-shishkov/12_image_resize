@@ -129,7 +129,7 @@ def load_source_image(source_image_filepath):
         source_image = Image.open(source_image_filepath)
         return source_image
     except OSError:
-        source_image = None
+        return None
 
 
 def save_image_to_file(output_image, output_image_filepath, image_format):
